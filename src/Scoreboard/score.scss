@@ -1,0 +1,30 @@
+.score-bar {
+  width: 35rem;
+  display: flex;
+  justify-content: space-between;
+
+  .left-bar, .right-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 45%;
+    padding: 0.65rem 2rem;
+    border: 1px solid rgb(211, 209, 209);
+    border-bottom: 2px solid green;
+    border-radius: 7px;
+    background-color: #fff;
+  }
+
+  .cross, .nought {
+    #cross, #nought {
+      width: 2rem;
+      stroke-width: 3px;
+      stroke-dashoffset: 0;
+      animation: none;
+    }
+
+    .score {
+      vertical-align: center;
+    }
+  }
+}
