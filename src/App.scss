@@ -1,54 +1,11 @@
 #root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-  box-sizing: border-box;
   text-align: center;
+  box-sizing: border-box;
+  font-size: 62.5%;
 }
-
-// #nought{
-//   width: 150px;
-//   stroke: black;
-//   fill: white;
-//   rotate: -90deg;
-//   transform: rotate3d(1, 0, 0, 180deg);
-//   stroke-dasharray: 236%;
-//   stroke-dashoffset: 236%;
-//   animation: 0.3s ease-in forwards nought;
-// }
-
-// @keyframes nought {
-//   0% {
-//     stroke-dashoffset: 236%;
-//   }
-
-//   100% {
-//     stroke-dashoffset: 0;
-//   }
-// }
-
-// .piece-o {
-//   width: 300px;
-//   height: 300px;
-// }
-
-// #cross {
-//   width: 80%;
-//   stroke: black;
-//   stroke-width: 5%;
-//   fill: white;
-//   rotate: 90deg;
-//   stroke-dasharray: 100%;
-//   stroke-dashoffset: 100%;
-//   animation: .4s ease-in forwards cross;
-// }
-
-// @keyframes cross {
-//   0% {
-//     stroke-dashoffset: 100%;
-//   }
-
-//   100% {
-//     stroke-dashoffset: 0;
-//   }
-// }
