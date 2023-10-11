@@ -1,25 +1,22 @@
 import PropTypes from 'prop-types'
-import { useState } from 'react'
-import board from './board_state'
-import computer from '../minimax'
+// import computer from '../minimax'
 import './board.scss'
 
 Board.propTypes = {
   squares: PropTypes.array.isRequired,
-  xIsNext: PropTypes.string.isRequired,
-  comp_turn: PropTypes.bool.isRequired,
+  xIsNext: PropTypes.bool.isRequired,
+  // comp_turn: PropTypes.bool.isRequired,
+  onPlay: PropTypes.func.isRequired,
 }
 
 Square.propTypes = {
   pos: PropTypes.number.isRequired,
-  curr_piece: PropTypes.string.isRequired,
-  altTurn: PropTypes.func.isRequired,
-  iscomp_turn: PropTypes.bool.isRequired,
-  comp_move: PropTypes.number
+  value: PropTypes.string,
+  onSquareClick: PropTypes.func.isRequired,
 }
 
 Piece.propTypes = {
-  piece: PropTypes.string.isRequired,
+  piece: PropTypes.string,
 }
 
 function Piece({piece}) {
@@ -47,74 +44,35 @@ function Piece({piece}) {
   
 }
 
-function Square(props) {
-  const [clicked, setClicked] = useState(false);
-  const [piece, setPiece] = useState(props.curr_piece);
-  const [compMove, setCompMove] = useState(null);
+function Square({pos, value, onSquareClick}) {
 
-  if ((props.comp_move == props.pos) && (props.iscomp_turn)) {
-    // console.log(`It is computer's turn now --> ${props.iscomp_turn}`);
-    // updateBoard();
-    if (board.moves[props.comp_move] == null) {
-      setTimeout(()=>{
-        setCompMove(props.comp_move);
-        updateBoard();
-      }, 1000);
-    }
-  }
-
-  function updateBoard() {
-    //Update the board array with the appropriate piece
-    if (!props.iscomp_turn) {
-      board.move(props.pos, props.curr_piece);
-      setClicked(true);
-      setPiece(props.curr_piece);  
-    } else {
-      board.move(props.comp_move, props.curr_piece);
-    }
-
-    //Now, alternate turns
-    props.altTurn();
-  }
-
-  function handleClick() {
-    //Confirm you are not playing over an occupied square
-    console.log(board.game_win());
-    ((board.moves[props.pos] == null) && (board.game_win() == false)) ? updateBoard(): null;
-  }
-
-  const move = (clicked ? <Piece piece={piece} /> 
-                        : (compMove == props.pos
-                           ? <Piece piece={piece == 'x' ? 'o' : 'x'}/> : <></>));
-
-  if (props.pos == 2 || props.pos == 5) {
+  if (pos == 2 || pos == 5) {
     return (
-      <div onClick={handleClick} className="cell bot-border">
-        {move}
+      <div onClick={onSquareClick} className="cell bot-border">
+        <Piece piece={value} />
       </div>
     )
   }
 
-  else if (props.pos == 6 || props.pos == 7) {
+  else if (pos == 6 || pos == 7) {
     return (
-      <div onClick={handleClick} className="cell right-border">
-       {move}
+      <div onClick={onSquareClick} className="cell right-border">
+       <Piece piece={value} />
       </div>
     )
   }
 
-  else if (props.pos == 8) {
+  else if (pos == 8) {
     return (
-      <div onClick={handleClick} className="cell">
-        {move}
-        {console.log(board.moves)}
+      <div onClick={onSquareClick} className="cell">
+        <Piece piece={value} />
       </div>
     )
   }
 
   return (
-    <div onClick={handleClick} className="cell db-border">
-      {move}
+    <div onClick={onSquareClick} className="cell db-border">
+      <Piece piece={value} />
     </div>
   )
 }
@@ -133,19 +91,22 @@ export default function Board(props) {
       nextSquares[i] = 'o';
     }
 
-    onplay(nextSquares);
+    props.onPlay(nextSquares);
   }
   
   // const winner = calculateWinner(props.squares);
 
-  // create an array consisting of 9 null items and assign it to a stateless variable
-  const cells = 
+  // create an array consisting of numbers 0 to 8
+  const cells = [...Array(9).keys()];
 
   return (
     <div className="board">
-      {.map(item => (
+      {cells.map(item => (
         <Square 
-  
+          key={item}
+          pos={item}
+          value={props.squares[item]} 
+          onSquareClick={() => handleClick(item)}
         /> 
       ))}
     </div>
@@ -166,7 +127,7 @@ function calculateWinner(squares) {
 
   for (let i=0; i<8; i++) {
     const [a, b, c] = win_moves[i];
-    if ((squares.moves[a] !== null) && (squares.moves[a] == squares.moves[b]) && (squares.moves[b] == squares.moves[c])) {
+    if ((squares[a] !== null) && (squares[a] == squares[b]) && (squares[b] == squares[c])) {
       return {
         win_state: true,
         index: i,
