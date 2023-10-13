@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types'
 
-DifficultyIcon.propTypes = {
+LightningIcon.propTypes = {
   colorOne: PropTypes.string.isRequired,
   colorTwo: PropTypes.string.isRequired,
 }
 
-export default function DifficultyIcon({colorOne, colorTwo}) {
+export default function LightningIcon({colorOne, colorTwo}) {
   return (
     <svg id="lightning" viewBox="0 0 1024 1024" >
       <path d="M643.84 449.28l-243.2 435.2 76.8-332.8-102.4-12.8 230.4-448-76.8 345.6z" fill={colorOne} />
