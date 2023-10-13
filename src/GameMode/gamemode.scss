@@ -1,0 +1,73 @@
+#lightning, #dropdown-icon, #tick {
+  width: 2rem;
+}
+
+.gamemode {
+  position: relative;
+  display: inline-block;
+  font-size: 200%;
+  
+  .dropbtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    background-color: #fff;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 4px auto -webkit-focus-ring-color;
+    }
+
+    &:hover {
+       border-color: #fff;   
+     }
+  }
+  
+  .dropdown-content {
+    display: none;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 10px;
+
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    z-index: 1;
+
+    .mode {
+      display: flex;
+      width: 100%;
+    }
+
+    .mode a {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: inherit;
+      padding: 0.3rem 1rem 0.3rem 2rem;
+    }
+  }
+
+  .mode:hover { background-color: #ddd; }
+
+  .show { 
+    display: flex;
+    align-items: flex-start;
+
+    flex-direction: column;
+    padding: 0.5rem 0;
+
+    .active:hover {
+      background-color: #f1f1f1;
+    }
+
+    .active a {
+      padding: 0;
+    }
+  }
+}
