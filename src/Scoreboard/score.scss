@@ -17,6 +17,10 @@
       outline: none;
     }
 
+    &:focus-visible {
+      outline: 4px auto -webkit-focus-ring-color;
+    }
+
     &:active {
       box-shadow: 0 1px 1px #cdcdcd;
     }
