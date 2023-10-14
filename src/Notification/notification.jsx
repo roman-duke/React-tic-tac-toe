@@ -7,9 +7,10 @@ Notification.propTypes = {
   xIsNext: PropTypes.bool.isRequired,
   gameWin: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   squares: PropTypes.array.isRequired,
+  computerMode: PropTypes.bool.isRequired,
 }
 
-export default function Notification({xIsNext, gameWin, squares}) {
+export default function Notification({xIsNext, gameWin, squares, computerMode}) {
   
   const notification = xIsNext ? <Cross /> : <Nought />
 
@@ -19,12 +20,11 @@ export default function Notification({xIsNext, gameWin, squares}) {
     )
   } 
 
-  else if (!(squares.includes('x') || squares.includes('o'))) {
+  else if (computerMode && !(squares.includes('x') || squares.includes('o'))) {
     return (
       <div className="notification">Start game or Select player</div>
     )
   }
-
 
   return (
     <div className="notification">
