@@ -1,8 +1,15 @@
-# React + Vite
+# Minimax Tic-Tac-Toe
+This is an A.I x and o game in React.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
+It uses an implementation of the mini-max algorithm to simulate its artificial intelligence.
+The game has 3 different versions; Player vs Player, Player vs Computer and Computer vs Computer
 
-Currently, two official plugins are available:
+The Player vs Computer version is the main part of this project. This version has 3 difficulty levels:
+* Easy (The computer randomizes moves).
+* Medium (Usage of the minimax algorithm starts after the first move).
+* Impossible (Full usage of the minimax algorithm).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The computer was made intelligent by the implementation of the [minimax algorithm](https://www.youtube.com/watch?v=l-hh51ncgDI&t=494s) with some [alpha-beta prunning](https://www.youtube.com/watch?v=STjW3eH0Cik&t=1659s).
+
+> _Anyone who has never made a mistake has never tried anything new.._ ~ **Albert Einstein**
