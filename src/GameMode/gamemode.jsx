@@ -7,9 +7,10 @@ import './gamemode.scss'
 
 GameMode.propTypes = {
   onSelect: PropTypes.func.isRequired,
+  changeCompMode: PropTypes.func.isRequired,
 }
 
-export default function GameMode({onSelect}) {
+export default function GameMode({changeCompMode, onSelect}) {
   const [gameMode, setGameMode] = useState(1);
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -64,7 +65,16 @@ export default function GameMode({onSelect}) {
         {[...Array(4).keys()].map(item => (
           <div key={item} className={`${gameMode == item ? 'active' : ''} mode`}>
             {gameMode == item ? <TickIcon /> : null}
-            <a key={item} onClick={() => {setGameMode(item); onSelect()}}>{difficultyLevelsJSX[item]}</a>
+            <a key={item} onClick={
+              () => {
+                setGameMode(item); 
+                if (gameMode !== item) {
+                  onSelect();
+                  item == 3 ? changeCompMode(false) : changeCompMode(true);
+                }
+            }}>
+              {difficultyLevelsJSX[item]}
+            </a>
           </div>
         ))}
       </div>
