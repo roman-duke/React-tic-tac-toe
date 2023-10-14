@@ -7,11 +7,11 @@ import './gamemode.scss'
 
 GameMode.propTypes = {
   onSelect: PropTypes.func.isRequired,
-  changeCompMode: PropTypes.func.isRequired,
+  gameMode: PropTypes.number.isRequired,
+  changeMode: PropTypes.func.isRequired,
 }
 
-export default function GameMode({changeCompMode, onSelect}) {
-  const [gameMode, setGameMode] = useState(1);
+export default function GameMode({gameMode, changeMode, onSelect}) {
   const [showDropdown, setShowDropdown] = useState(false);
 
   const fillColor = "#ffffff"
@@ -67,10 +67,9 @@ export default function GameMode({changeCompMode, onSelect}) {
             {gameMode == item ? <TickIcon /> : null}
             <a key={item} onClick={
               () => {
-                setGameMode(item); 
+                changeMode(item); 
                 if (gameMode !== item) {
                   onSelect();
-                  item == 3 ? changeCompMode(false) : changeCompMode(true);
                 }
             }}>
               {difficultyLevelsJSX[item]}
