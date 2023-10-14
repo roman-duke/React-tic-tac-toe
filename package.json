@@ -1,16 +1,16 @@
 {
-  "homepage": "roman-duke.github.io/React-tic-tac-toe",
-  "name": "minimax-tic-tac-toe",
+  "homepage": "http://roman-duke.github.io/react-tic-tac-toe",
+  "name": "react-tic-tac-toe",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "pre-deploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "react": "^18.2.0",
