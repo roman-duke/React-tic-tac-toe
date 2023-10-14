@@ -1,10 +1,11 @@
 import _ from 'lodash';
+import calculateWinner from './win_checker';
 
-export default function computer(board, maximizer, minimizer) {
+export default function computer(board, maximizer, minimizer, mode) {
   const [max_score, draw_score, min_score] = [10, 0, -10];
 
   function best_move(board, piece) {
-    const available_pos = board.moves.map((val, idx) => {
+    const available_pos = board.map((val, idx) => {
       if (val == null) return idx
     }).filter(item => typeof(item) == 'number');
 
@@ -13,13 +14,13 @@ export default function computer(board, maximizer, minimizer) {
     function calculate(piece_type) {
       for (let pos of available_pos) {
         const temp_board = _.cloneDeep(board);
-        temp_board.move(pos, piece_type);
+        temp_board[pos] =piece_type;
 
-        if (temp_board.game_win()) {
+        if (calculateWinner(temp_board)) {
           piece_type == maximizer ? scores.push(max_score) : scores.push(min_score); break
         }
 
-        else if (!temp_board.game_win() && !temp_board.moves.includes(null)) {
+        else if (!calculateWinner(temp_board) && !temp_board.includes(null)) {
           scores.push(draw_score); break
         } else {
           piece_type == maximizer ? scores.push(best_move(temp_board, minimizer))
@@ -28,7 +29,7 @@ export default function computer(board, maximizer, minimizer) {
         }
       }
     }
-  
+    
     if (piece === maximizer) {
       calculate(piece);
       return [Math.max(...scores), available_pos[scores.indexOf(Math.max(...scores))]]
@@ -40,6 +41,24 @@ export default function computer(board, maximizer, minimizer) {
     }
 
   }
-  
+
+  const available_pos = board.map((val, idx) => {
+    if (val == null) return idx
+  }).filter(item => typeof(item) == 'number');
+
+  if (mode == 0) {
+    const randomIndex = Math.floor(Math.random() * available_pos.length);
+    return [null, available_pos[randomIndex]]
+  }
+
+  else if (mode == 1) {
+    if (available_pos.length >= 8) {
+      const randomIndex = Math.floor(Math.random() * available_pos.length);
+      return [null, available_pos[randomIndex]];
+    } else {
+      return best_move(board, maximizer);
+    }
+  } 
+
   return best_move(board, maximizer);
 }

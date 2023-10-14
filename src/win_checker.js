@@ -15,7 +15,8 @@ export default function calculateWinner(squares) {
     if ((squares[a] !== null) && (squares[a] == squares[b]) && (squares[b] == squares[c])) {
       return {
         win_state: true,
-        index: i,
+        win_index: i,
+        piece: squares[a],  
       }
     }
   }

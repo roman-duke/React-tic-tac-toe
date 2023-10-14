@@ -32,7 +32,7 @@
 
   .active {
     box-shadow: 0 4px 5px 2px #cdcdcd;
-    border-bottom: 2px solid green;
+    border-bottom: 2px solid rgb(0, 115, 128);
 
     &:active {
       box-shadow: 0 4px 5px 2px #cdcdcd;
@@ -50,5 +50,27 @@
     .score {
       vertical-align: center;
     }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .score-bar {
+    width: 21.5rem;
+
+    .left-bar, .right-bar {
+      padding: 0.65rem;
+    }
+
+    .cross, .nought {
+      #cross, #nought {
+        width: 1.4rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 385px) {
+  .score-bar {
+    width: 20rem;
   }
 }
